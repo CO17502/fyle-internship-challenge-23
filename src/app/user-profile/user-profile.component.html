@@ -103,7 +103,7 @@
     <!-- User Information -->
     <div class="m-24">
       <!-- Name -->
-      <h1 class="text-3xl font-bold m-5">{{ userData?.name }}</h1>
+      <h1 class="text-3xl font-bold m-5">{{ userData?.name ?? userData?.login}}</h1>
 
       <!-- Bio -->
       <p class="text-base text-gray-500 m-5">{{ userData?.bio }}</p>
@@ -111,6 +111,7 @@
       <!-- Location -->
       <div class="flex items-center">
         <svg
+        *ngIf="userData.location"
           class="m-5"
           fill="#000000"
           version="1.1"
@@ -150,7 +151,7 @@
   </div>
 
   <!-- Pagination Dropdown -->
-  <div *ngIf="userData" class="flex  px-10 justify-end items-center m-2">
+  <div *ngIf="userData && repo.length" class="flex  px-10 justify-end items-center m-2">
     <label for="pageSize">Per Page:</label>
     <select
       id="pageSize"
@@ -235,7 +236,14 @@
     </div>
   </div>
 
-  <div *ngIf="userData" class="flex justify-center">
+  <div class="flex justify-center">
+    <div *ngIf=" userData && !repo.length" class="bg-red-100 border w-1/2 border-red-400 text-red-700 px-4 py-3 rounded-md mb-4" role="alert">
+      <p class="text-sm">No repository found.</p>
+    </div>
+
+  </div>
+
+  <div *ngIf="userData && repo.length" class="flex justify-center">
     <nav>
       <ul class="inline-flex -space-x-px text-base h-10 w-fit m-8">
         <li>
@@ -260,14 +268,13 @@
   </div>
 </ng-template>
 
-<div *ngIf="!userData" class="flex items-center">
+<div *ngIf="!userData && !loading" class="flex items-center">
   <svg
-    width="800px"
-    height="800px"
-    viewBox="-20 0 190 190"
+    width="400px"
+    height="400px"
+    viewBox="0 0 200 200"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    class="mx-auto="
   >
     <path
       fill-rule="evenodd"
@@ -276,5 +283,5 @@
       fill="#000000"
     />
   </svg>
-  <p class="text-gray-800 text-5xl font-extrabold ml-10">User not found.</p>
+  <p class="text-gray-800 text-5xl font-extrabold">User not found.</p>
 </div>

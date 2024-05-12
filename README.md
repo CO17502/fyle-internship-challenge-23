@@ -1,43 +1,49 @@
-# Fyle Frontend Challenge
+# Github Repositories Listing SPA Solution
 
-## Who is this for?
+This README provides an overview of the solution for the Github Repositories Listing SPA challenge.
 
-This challenge is meant for candidates who wish to intern at Fyle and work with our engineering team. The candidate should be able to commit to at least 6 months of dedicated time for internship.
+## Overview
 
-## Why work at Fyle?
+This Angular 14+ single-page application (SPA) allows users to input a GitHub username and displays the public GitHub repositories associated with that user. The application meets the specific requirements outlined in the challenge description.
 
-Fyle is a fast-growing Expense Management SaaS product. We are ~40 strong engineering team at the moment. 
+Live demo:  
 
-We are an extremely transparent organization. Check out our [careers page](https://careers.fylehq.com) that will give you a glimpse of what it is like to work at Fyle. Also, check out our Glassdoor reviews [here](https://www.glassdoor.co.in/Reviews/Fyle-Reviews-E1723235.htm). You can read stories from our teammates [here](https://stories.fylehq.com).
+## Features Implemented
 
-## Challenge outline
+- **Search Functionality**: Users can search for GitHub repositories by entering a username.
+- **Zero State Handling**: An empty state is displayed if the user is not found, with the search bar still visible.
+- **Topic Display**: Repositories display their associated topics, where one repository can have multiple topics.
+- **Server-side Pagination**: Pagination is implemented on the server-side, with a dropdown for selecting the page size. The default is set to 10 repositories per page, with a maximum of 100.
+- **Loader**: A skeleton loader is displayed during API calls to enhance user experience.
+- **Unit Tests**: The solution includes unit tests for 1 component and 1 service, achieving 100% code coverage. Instructions for running the tests are provided in the README.
+- **Hosting**: The SPA is hosted on [provide_hosting_service] and can be accessed at [provide_link_here].
+- **API Caching**: GET API calls to external APIs are cached to avoid duplicates.
 
-This challenge involves implementing application using github api. 
 
-The services that you need to use are already implemented - check out ApiService.
+## Folder Structure
 
-You can see details of this challenge [here](https://fyleuniverse.notion.site/fyleuniverse/Fyle-Frontend-development-challenge-cb5085e5e0864e769e7b98c694400aaa)
+The folder structure follows best practices and is well-organized for easy navigation and maintenance.
 
-__Note__ - This challenge is in angular. We work on angular frameworks & after you join we expect the same from you. Hence it is required to complete this assignement in angular itself.
+## Additional Libraries Used
 
-## What happens next?
+- lodash
 
-You will hear back within 48 hours from us via email.
+## Running Locally
 
-## Installation
+To run the application locally:
 
-1. Fork this repository to your github account.
-2. Clone the forked repository and proceed with steps mentioned below.
+1. Clone the repository.
+2. Install dependencies with `npm install`.
+3. Start the development server with `ng serve`.
+4. Navigate to `http://localhost:4200/` in your browser.
 
-### Install requirements
-* Install angular cli [Ref](https://angular.io/cli)
-* `npm install` in this repository 
+## Running Tests
 
-## Development server
+To run unit tests:
 
-Run `ng serve` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
+1. Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Further help
+## Author
 
-Visit the [Angular Documentation](https://angular.io/guide/styleguide) to learn more.
-Styling is to be strictly done with [Tailwind](https://tailwindcss.com/docs/installation).
+Aayushi Aggarwal
+

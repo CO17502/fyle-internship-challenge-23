@@ -125,9 +125,9 @@ export class UserProfileComponent implements OnDestroy {
   // Pagination methods
   nextPage() {
     // Check if userData is defined and contains the public_repos property
+    this.currentPage++;
     if (this.userData && this.userData.public_repos !== undefined) {
       // Check if repositories for the next page are already loaded
-      this.currentPage++;
       if (
         this.repo.length < this.currentPage * this.page_size &&
         this.repo.length !== this.userData.public_repos
@@ -136,7 +136,6 @@ export class UserProfileComponent implements OnDestroy {
       }
     }
   }
-  
 
   prevPage(): void {
     this.currentPage--;

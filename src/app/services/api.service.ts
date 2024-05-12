@@ -1,21 +1,21 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { tap, throwError } from 'rxjs';
 import { Octokit } from '@octokit/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment'
 
 @Injectable({
   providedIn: 'root',
 })
+
 export class ApiService {
   private octokit: Octokit = new Octokit();
-  private perPage = 10;
 
   constructor(private httpClient: HttpClient) {}
 
   getUser(githubUsername: string) {
     return this.httpClient.get(
-      `https://api.github.com/users/${githubUsername}`
+      `${environment.githubUrl}/users/${githubUsername}`
     );
   }
 
