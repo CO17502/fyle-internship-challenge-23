@@ -1,0 +1,245 @@
+<!-- Loader skeleton -->
+<div *ngIf="loading; else content" class="mt-20">
+  <div
+    role="status"
+    class="space-y-8 animate-pulse md:space-y-0 md:space-x-8 rtl:space-x-reverse md:flex md:items-center"
+  >
+    <!-- for image   -->
+    <div
+      class="flex items-center justify-center w-full h-48 bg-blue-200 rounded-full sm:w-96 dark:bg-blue-200"
+    >
+      <svg
+        class="w-200 h-200 text-blue-200 dark:text-blue-300"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle cx="10" cy="10" r="4" fill="#b2aeea" fill-opacity="0.24" />
+        <path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M16.221 18.2462C16.2791 18.3426 16.2614 18.466 16.1796 18.5432C14.5675 20.0662 12.3928 21 10.0001 21C7.60734 21 5.4327 20.0663 3.82063 18.5433C3.73883 18.466 3.72107 18.3427 3.77924 18.2463C4.94343 16.318 7.29221 15 10.0001 15C12.708 15 15.0568 16.3179 16.221 18.2462Z"
+          fill="#b2aeea"
+          fill-opacity="0.24"
+        />
+        <path d="M18.5 10.5V16.5" stroke="#b2aeea" stroke-linecap="round" />
+        <path d="M15.5 13.5H21.5" stroke="#b2aeea" stroke-linecap="round" />
+      </svg>
+    </div>
+
+    <!-- for text on the side of image -->
+    <div class="w-full">
+      <div
+        class="h-5 bg-blue-200 rounded-full dark:bg-blue-200 w-48 mb-4"
+      ></div>
+      <div
+        class="h-5 bg-blue-200 rounded-full dark:bg-blue-200 max-w-[480px] mb-2.5"
+      ></div>
+      <div class="h-5 bg-blue-200 rounded-full dark:bg-blue-200 mb-2.5"></div>
+      <div
+        class="h-5 bg-blue-200 rounded-full dark:bg-blue-200 max-w-[440px] mb-2.5"
+      ></div>
+      <div
+        class="h-5 bg-blue-200 rounded-full dark:bg-blue-200 max-w-[460px] mb-2.5"
+      ></div>
+      <div
+        class="h-5 bg-blue-200 rounded-full dark:bg-blue-200 max-w-[360px]"
+      ></div>
+    </div>
+  </div>
+
+  <!-- for repository cards -->
+  <div class="flex w-full p-3.5 h-96">
+    <div class="flex-grow">
+      <div
+        role="status"
+        class="max-w-full p-100 border border-blue-200 rounded shadow animate-pulse md:p-2.5 dark:border-blue-200 m-3.5"
+      >
+        <div
+          class="h-2.5 bg-blue-200 rounded-full dark:bg-blue-200 w-48 mb-4"
+        ></div>
+        <div class="h-2 bg-blue-200 rounded-full dark:bg-blue-200 mb-2.5"></div>
+        <div class="h-2 bg-blue-200 rounded-full dark:bg-blue-200 mb-2.5"></div>
+        <div class="h-2 bg-blue-200 rounded-full dark:bg-blue-200"></div>
+      </div>
+    </div>
+    <div class="flex-grow">
+      <div
+        role="status"
+        class="max-w-full p-100 border border-blue-200 rounded shadow animate-pulse md:p-2.5 dark:border-blue-200 m-3.5"
+      >
+        <div
+          class="h-2.5 bg-blue-200 rounded-full dark:bg-blue-200 w-48 mb-4"
+        ></div>
+        <div class="h-2 bg-blue-200 rounded-full dark:bg-blue-200 mb-2.5"></div>
+        <div class="h-2 bg-blue-200 rounded-full dark:bg-blue-200 mb-2.5"></div>
+        <div class="h-2 bg-blue-200 rounded-full dark:bg-blue-200"></div>
+      </div>
+    </div>
+  </div>
+
+  <span class="sr-only">Loading...</span>
+</div>
+
+<ng-template #content>
+  <div *ngIf="userData" class="m-10 flex items-start">
+    <!-- Profile Image -->
+    <div class="m-8">
+      <img
+        src="{{ userData?.avatar_url }}"
+        alt="Profile Image"
+        class="w-auto h-auto rounded-full m-4 p-px"
+      />
+      <div class="text-lg text-gray-400 text-center m-2">
+        <a
+          href="{{ userData?.html_url }}"
+          target="_blank"
+          class="text-blue-500 hover:underline"
+          >{{ userData?.html_url }}</a
+        >
+      </div>
+    </div>
+
+    <!-- User Information -->
+    <div class="m-24">
+      <!-- Name -->
+      <h1 class="text-3xl font-bold m-5">{{ userData?.name }}</h1>
+
+      <!-- Bio -->
+      <p class="text-base text-gray-500 m-5">{{ userData?.bio }}</p>
+
+      <!-- Location -->
+      <div class="flex items-center">
+        <svg
+          class="m-5"
+          fill="#000000"
+          version="1.1"
+          id="Capa_1"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          width="24px"
+          height="24px"
+          viewBox="0 0 395.71 395.71"
+          xml:space="preserve"
+        >
+          <g>
+            <path
+              d="M197.849,0C122.131,0,60.531,61.609,60.531,137.329c0,72.887,124.591,243.177,129.896,250.388l4.951,6.738
+		c0.579,0.792,1.501,1.255,2.471,1.255c0.985,0,1.901-0.463,2.486-1.255l4.948-6.738c5.308-7.211,129.896-177.501,129.896-250.388
+		C335.179,61.609,273.569,0,197.849,0z M197.849,88.138c27.13,0,49.191,22.062,49.191,49.191c0,27.115-22.062,49.191-49.191,49.191
+		c-27.114,0-49.191-22.076-49.191-49.191C148.658,110.2,170.734,88.138,197.849,88.138z"
+            />
+          </g>
+        </svg>
+        <p class="text-base text-gray-600">
+          {{ userData?.location }}
+        </p>
+      </div>
+
+      <!-- Twitter Handle -->
+      <p class="text-base text-gray-600 m-5 flex items-center">
+        Twitter:
+        <a
+          href="https://twitter.com/{{ userData?.twitter_username }}"
+          target="_blank"
+          class="text-blue-500 hover:underline m-2"
+          >https://twitter.com/{{ userData?.twitter_username }}</a
+        >
+      </p>
+    </div>
+  </div>
+
+  <!-- Pagination Dropdown -->
+  <div class="flex items-center m-2">
+    <label for="pageSize">Per Page:</label>
+    <select id="pageSize" class="mx-2 border-2" [(ngModel)]="page_size" (change)="onPageSizeChange()">
+      <option *ngFor="let size of pageSizeOptions" [value]="size">{{ size }}</option>
+    </select>
+  </div>
+
+  <div *ngIf="repo" class=" repo mr-8 ml-8 flex flex-wrap">
+    <!-- Repository Card -->
+    <div
+      *ngFor="
+        let rep of repo?.slice(
+          (currentPage - 1) * page_size,
+          currentPage * page_size
+        )
+      "
+      class=" repo-card rounded-sm p-4 border-2 border-gray-300"
+    >
+      <!-- Repository Name -->
+      <h2 class="text-3xl font-semibold text-blue-700">{{ rep.name }}</h2>
+
+      <!-- Repository Description -->
+      <p class="text-lg text-gray-600 my-2 first-letter:capitalize">{{ rep.description }}</p>
+      <div class="flex flex-wrap mt-1">
+        <ng-container *ngFor="let topic of rep.topics">
+          <span
+            class="inline-block bg-blue-600 rounded-md px-2 py-0.5 text-md font-semibold text-white mr-2 mb-2"
+            >{{ topic }}</span
+          >
+        </ng-container>
+      </div>
+
+      <!-- Repository Details (Stars, Forks, Language) -->
+      <div class="text-sm align-baseline footer text-gray-500 ">
+        <span>{{ rep.stargazers_count }} Stars</span> |
+        <span>{{ rep.forks_count }} Forks</span> |
+        <span>{{ rep.language }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex justify-center">
+    <nav>
+      <ul class="inline-flex -space-x-px text-base h-10 w-fit m-8">
+        <li>
+          <button
+            (click)="prevPage()"
+            [disabled]="currentPage === 1"
+            class="flex items-center justify-center px-4 h-10 ms-0 leading-tight text-gray-700 bg-white border-2 border-e-0 border-blue-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 "
+          >
+            Previous
+          </button>
+        </li>
+  
+        <ng-container *ngFor="let page of pageArr; let i = index">
+          <li>
+            <button
+              *ngIf="
+                i < 3 ||
+                (i >= currentPage - 1 && i <= currentPage + 1) ||
+                i >= pageArr.length - 3
+              "
+              class="flex items-center justify-center px-4 h-10 leading-tight text-gray-700 bg-white border-2 border-blue-300 hover:bg-gray-100 hover:text-gray-700"
+              [class.text-blue-600]="page + 1 === currentPage"
+            >
+              {{ page + 1 }}
+            </button>
+          </li>
+          <li>
+            <button *ngIf="i === 3 && pageArr.length > 6 " class="flex items-center justify-center px-5 mr-3 h-10 leading-tight text-gray-700 bg-white border-2 border-blue-300 hover:bg-gray-100 hover:text-gray-700">...</button>
+            </li>
+        </ng-container>
+  
+        <li>
+          <button
+            (click)="nextPage()"
+            class="flex items-center justify-center px-4 h-10 leading-tight text-gray-700 bg-white border-2 border-blue-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700"
+          >
+            Next
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  
+</ng-template>
+
+<div *ngIf="!loading && error.trim() !== ''" class="flex items-center">
+  <svg width="800px" height="800px" viewBox="-20 0 190 190" fill="none" xmlns="http://www.w3.org/2000/svg" class="mx-auto=">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M38.155 140.475L48.988 62.1108L92.869 67.0568L111.437 91.0118L103.396 148.121L38.155 140.475ZM84.013 94.0018L88.827 71.8068L54.046 68.3068L44.192 135.457L98.335 142.084L104.877 96.8088L84.013 94.0018ZM59.771 123.595C59.394 123.099 56.05 120.299 55.421 119.433C64.32 109.522 86.05 109.645 92.085 122.757C91.08 123.128 86.59 125.072 85.71 125.567C83.192 118.25 68.445 115.942 59.771 123.595ZM76.503 96.4988L72.837 99.2588L67.322 92.6168L59.815 96.6468L56.786 91.5778L63.615 88.1508L59.089 82.6988L64.589 79.0188L68.979 85.4578L76.798 81.5328L79.154 86.2638L72.107 90.0468L76.503 96.4988Z" fill="#000000"/>
+  </svg>
+  <p class="text-gray-800 text-5xl font-extrabold ml-10">User not found.</p>
+</div>
