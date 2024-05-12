@@ -6,7 +6,7 @@ This README provides an overview of the solution for the Github Repositories Lis
 
 This Angular 14+ single-page application (SPA) allows users to input a GitHub username and displays the public GitHub repositories associated with that user. The application meets the specific requirements outlined in the challenge description.
 
-Live demo:  
+Live demo: https://co17502.github.io/fyle-internship-challenge-23/ 
 
 ## Features Implemented
 
