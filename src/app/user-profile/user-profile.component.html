@@ -82,7 +82,7 @@
 </div>
 
 <ng-template #content>
-  <div *ngIf="userData" class="m-10 flex items-start">
+  <div *ngIf="userData" class="m-10 flex items-start user-profile-info">
     <!-- Profile Image -->
     <div class="m-8">
       <img
@@ -150,14 +150,21 @@
   </div>
 
   <!-- Pagination Dropdown -->
-  <div class="flex items-center m-2">
+  <div *ngIf="userData" class="flex  px-10 justify-end items-center m-2">
     <label for="pageSize">Per Page:</label>
-    <select id="pageSize" class="mx-2 border-2" [(ngModel)]="page_size" (change)="onPageSizeChange()">
-      <option *ngFor="let size of pageSizeOptions" [value]="size">{{ size }}</option>
+    <select
+      id="pageSize"
+      class="mx-2 border-2"
+      [(ngModel)]="page_size"
+      (change)="onPageSizeChange()"
+    >
+      <option *ngFor="let size of pageSizeOptions" [value]="size">
+        {{ size }}
+      </option>
     </select>
   </div>
 
-  <div *ngIf="repo" class=" repo mr-8 ml-8 flex flex-wrap">
+  <div *ngIf="userData; repo" class="repo mr-8 ml-8 flex flex-wrap">
     <!-- Repository Card -->
     <div
       *ngFor="
@@ -166,13 +173,15 @@
           currentPage * page_size
         )
       "
-      class=" repo-card rounded-sm p-4 border-2 border-gray-300"
+      class="repo-card flex flex-col rounded-md p-4 border-2 border-gray-300"
     >
       <!-- Repository Name -->
       <h2 class="text-3xl font-semibold text-blue-700">{{ rep.name }}</h2>
 
       <!-- Repository Description -->
-      <p class="text-lg text-gray-600 my-2 first-letter:capitalize">{{ rep.description }}</p>
+      <p class="text-lg text-gray-600 my-2 first-letter:capitalize">
+        {{ rep.description }}
+      </p>
       <div class="flex flex-wrap mt-1">
         <ng-container *ngFor="let topic of rep.topics">
           <span
@@ -183,46 +192,61 @@
       </div>
 
       <!-- Repository Details (Stars, Forks, Language) -->
-      <div class="text-sm align-baseline footer text-gray-500 ">
-        <span>{{ rep.stargazers_count }} Stars</span> |
-        <span>{{ rep.forks_count }} Forks</span> |
-        <span>{{ rep.language }}</span>
+      <div class="text-sm flex-1 items-end flex g-2 footer text-gray-500">
+        <div class="flex items-center">
+          <svg
+            aria-label="star"
+            role="img"
+            height="16"
+            viewBox="0 0 16 16"
+            version="1.1"
+            width="16"
+            data-view-component="true"
+            class="octicon octicon-star"
+          >
+            <path
+              d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z"
+            ></path>
+          </svg>
+          <span class="ml-1">{{ rep.stargazers_count }}</span>
+        </div>
+        <div class="flex mx-2 items-center">
+          <svg
+            aria-label="fork"
+            role="img"
+            height="16"
+            viewBox="0 0 16 16"
+            version="1.1"
+            width="16"
+            data-view-component="true"
+            class="octicon octicon-repo-forked"
+          >
+            <path
+              d="M5 5.372v.878c0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75v-.878a2.25 2.25 0 1 1 1.5 0v.878a2.25 2.25 0 0 1-2.25 2.25h-1.5v2.128a2.251 2.251 0 1 1-1.5 0V8.5h-1.5A2.25 2.25 0 0 1 3.5 6.25v-.878a2.25 2.25 0 1 1 1.5 0ZM5 3.25a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Zm6.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-3 8.75a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Z"
+            ></path>
+          </svg>
+          <span class="ml-1">{{ rep.forks_count }}</span>
+        </div>
+        <div class="flex items-center">
+          <span *ngIf="rep.language"  class="h-4 w-4 rounded-full mr-1 bg-yellow-200"></span
+          ><span>{{ rep.language }}</span>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="flex justify-center">
+  <div *ngIf="userData" class="flex justify-center">
     <nav>
       <ul class="inline-flex -space-x-px text-base h-10 w-fit m-8">
         <li>
           <button
             (click)="prevPage()"
             [disabled]="currentPage === 1"
-            class="flex items-center justify-center px-4 h-10 ms-0 leading-tight text-gray-700 bg-white border-2 border-e-0 border-blue-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 "
+            class="flex items-center justify-center px-4 h-10 ms-0 leading-tight text-gray-700 bg-white border-2 border-e-0 border-blue-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700"
           >
             Previous
           </button>
         </li>
-  
-        <ng-container *ngFor="let page of pageArr; let i = index">
-          <li>
-            <button
-              *ngIf="
-                i < 3 ||
-                (i >= currentPage - 1 && i <= currentPage + 1) ||
-                i >= pageArr.length - 3
-              "
-              class="flex items-center justify-center px-4 h-10 leading-tight text-gray-700 bg-white border-2 border-blue-300 hover:bg-gray-100 hover:text-gray-700"
-              [class.text-blue-600]="page + 1 === currentPage"
-            >
-              {{ page + 1 }}
-            </button>
-          </li>
-          <li>
-            <button *ngIf="i === 3 && pageArr.length > 6 " class="flex items-center justify-center px-5 mr-3 h-10 leading-tight text-gray-700 bg-white border-2 border-blue-300 hover:bg-gray-100 hover:text-gray-700">...</button>
-            </li>
-        </ng-container>
-  
         <li>
           <button
             (click)="nextPage()"
@@ -234,12 +258,23 @@
       </ul>
     </nav>
   </div>
-  
 </ng-template>
 
-<div *ngIf="!loading && error.trim() !== ''" class="flex items-center">
-  <svg width="800px" height="800px" viewBox="-20 0 190 190" fill="none" xmlns="http://www.w3.org/2000/svg" class="mx-auto=">
-    <path fill-rule="evenodd" clip-rule="evenodd" d="M38.155 140.475L48.988 62.1108L92.869 67.0568L111.437 91.0118L103.396 148.121L38.155 140.475ZM84.013 94.0018L88.827 71.8068L54.046 68.3068L44.192 135.457L98.335 142.084L104.877 96.8088L84.013 94.0018ZM59.771 123.595C59.394 123.099 56.05 120.299 55.421 119.433C64.32 109.522 86.05 109.645 92.085 122.757C91.08 123.128 86.59 125.072 85.71 125.567C83.192 118.25 68.445 115.942 59.771 123.595ZM76.503 96.4988L72.837 99.2588L67.322 92.6168L59.815 96.6468L56.786 91.5778L63.615 88.1508L59.089 82.6988L64.589 79.0188L68.979 85.4578L76.798 81.5328L79.154 86.2638L72.107 90.0468L76.503 96.4988Z" fill="#000000"/>
+<div *ngIf="!userData" class="flex items-center">
+  <svg
+    width="800px"
+    height="800px"
+    viewBox="-20 0 190 190"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    class="mx-auto="
+  >
+    <path
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+      d="M38.155 140.475L48.988 62.1108L92.869 67.0568L111.437 91.0118L103.396 148.121L38.155 140.475ZM84.013 94.0018L88.827 71.8068L54.046 68.3068L44.192 135.457L98.335 142.084L104.877 96.8088L84.013 94.0018ZM59.771 123.595C59.394 123.099 56.05 120.299 55.421 119.433C64.32 109.522 86.05 109.645 92.085 122.757C91.08 123.128 86.59 125.072 85.71 125.567C83.192 118.25 68.445 115.942 59.771 123.595ZM76.503 96.4988L72.837 99.2588L67.322 92.6168L59.815 96.6468L56.786 91.5778L63.615 88.1508L59.089 82.6988L64.589 79.0188L68.979 85.4578L76.798 81.5328L79.154 86.2638L72.107 90.0468L76.503 96.4988Z"
+      fill="#000000"
+    />
   </svg>
   <p class="text-gray-800 text-5xl font-extrabold ml-10">User not found.</p>
 </div>
